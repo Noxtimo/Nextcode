@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import SignIn from "./sign-in.component.jsx.jsx";
+import SignIn from "./sign-in.component.jsx";
+import { auth } from "firebase/auth";
 
 function CustomModal() {
   const [show, setShow] = useState(false);
@@ -9,10 +10,27 @@ function CustomModal() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  var user = firebase.auth().currentUser;
+  const handleLogout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log("User signed out successfully.");
+        // Optionally, you can add additional logic after logout
+      })
+      .catch((error) => {
+        console.error("Error signing out: ", error);
+      });
+  };
+
   return (
     <>
-      <div className="nav-link hover" onClick={handleShow}>
-        Login
+      <div
+        className="nav-link hover"
+        onClick={user ? handleLogout : handleShow}
+      >
+        {user ? "Logout" : "Login"}
       </div>
 
       <Modal show={show} onHide={handleClose}>
