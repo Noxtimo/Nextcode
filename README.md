@@ -10,3 +10,5 @@ Currently, two official plugins are available:
 ## Updates
 
 I have updates a few css classes.
+
+- Added Google signIn but would need to enable Signout.

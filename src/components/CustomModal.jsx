@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import SignIn from "./sign-in.component.jsx.jsx";
 
 function CustomModal() {
   const [show, setShow] = useState(false);
@@ -23,6 +24,7 @@ function CustomModal() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
+          <SignIn />
           <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button>
