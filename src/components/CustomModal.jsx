@@ -2,35 +2,35 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import SignIn from "./sign-in.component.jsx";
-import { auth } from "firebase/auth";
+import { signOut } from "firebase/auth";
+import { auth } from "../utils/firebase.utils.js";
+import { useNavigate } from "react-router-dom";
 
 function CustomModal() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  var user = firebase.auth().currentUser;
+  const user = auth.currentUser;
+  const navigate = useNavigate();
   const handleLogout = () => {
-    firebase
-      .auth()
-      .signOut()
+    signOut(auth)
       .then(() => {
-        console.log("User signed out successfully.");
-        // Optionally, you can add additional logic after logout
+        // Sign-out successful.
+        navigate("/");
+        console.log("Signed out successfully");
       })
       .catch((error) => {
-        console.error("Error signing out: ", error);
+        // An error happened.
       });
   };
-
   return (
     <>
       <div
         className="nav-link hover"
         onClick={user ? handleLogout : handleShow}
       >
-        {user ? "Logout" : "Login"}
+        {user ? "logout" : "login"}
       </div>
 
       <Modal show={show} onHide={handleClose}>

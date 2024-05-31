@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Outlet, Link } from "react-router-dom";
 import CustomModal from "../components/CustomModal";
-
+import { auth } from "../utils/firebase.utils";
 const Layout = () => {
   return (
     <>
